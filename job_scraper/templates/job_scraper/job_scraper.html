@@ -1,0 +1,28 @@
+{% extends "scraper/scraper_home.html" %}
+{% block content %}
+<div id="main">
+    <h1>Find Jobs</h1>
+    <form method="GET">
+        <div>
+            <label for="key_word"></label>
+            <input type="text" id="key_word" value="{{ request.GET.key_word }}" placeholder="Key word..." name="key_word"/>
+        </div>
+        <input type="submit" value="Submit"/>
+    </form>
+    <div class="results">
+    {% if result %}
+        {% for i in result %}
+            <h3>{{ i.index }}</h3>
+            <h3>Title: {{ i.title }}</h3>
+            <h3>Company name: {{ i.company_name }}</h3>
+            <h3>Place: {{ i.city_or_country }}</h3>
+            <h3>Salary: {{ i.salary }}</h3>
+            <h3>
+                <a href="{{ i.advertisement_link }}">Link</a>
+            </h3>
+        {% endfor %}
+    {% endif %}
+    </div>
+</div>
+
+{% endblock %}

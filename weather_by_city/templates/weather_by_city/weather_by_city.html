@@ -1,0 +1,26 @@
+{% extends "scraper/scraper_home.html" %}
+{% block content %}
+<div id="main">
+    <h1>Find the Weather</h1>
+    <form method="GET">
+        <div>
+            <label for="ip"></label>
+            <input type="text" id="ip" value="{{ request.GET.ip }}" placeholder="IP..." name="ip"/>
+        </div>
+        <input type="submit" value="Submit"/>
+    </form>
+    {% if result == Null %}
+        <h3>Find your IP: <a href="https://www.myip.com/">myip.com</a></h3>
+    {% endif %}
+    <div class="results">
+    {% if result %}
+        <h3>Given IP: {{ result.0 }}</h3>
+        <h3>Country: {{ result.1 }}</h3>
+        <h3>City: {{ result.2 }}</h3>
+        <h3>Temperature: {{ result.3 }}°C</h3>
+        <h3>Condition: {{ result.4 }}</h3>
+    {% endif %}
+    </div>
+</div>
+
+{% endblock %}
